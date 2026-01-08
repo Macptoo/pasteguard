@@ -56,7 +56,7 @@ const PIIDetectionSchema = z.object({
   presidio_url: z.string().url(),
   languages: z.array(LanguageEnum).default(["en"]),
   fallback_language: LanguageEnum.default("en"),
-  score_threshold: z.number().min(0).max(1).default(0.7),
+  score_threshold: z.coerce.number().min(0).max(1).default(0.7),
   entities: z
     .array(z.string())
     .default([
@@ -71,13 +71,13 @@ const PIIDetectionSchema = z.object({
 });
 
 const ServerSchema = z.object({
-  port: z.number().default(3000),
+  port: z.coerce.number().int().min(1).max(65535).default(3000),
   host: z.string().default("0.0.0.0"),
 });
 
 const LoggingSchema = z.object({
   database: z.string().default("./data/llm-shield.db"),
-  retention_days: z.number().default(30),
+  retention_days: z.coerce.number().int().min(0).default(30),
   log_content: z.boolean().default(false),
   log_masked_content: z.boolean().default(true),
 });
