@@ -319,7 +319,7 @@ describe("detectSecrets - Bearer Tokens", () => {
   });
 
   test("detects bearer token (lowercase)", () => {
-    const text = "bearer abcdefghijklmnopqrstuvwxyz1234567890";
+    const text = "bearer abcdefghijklmnopqrstuvwxyz1234567890ABCD";
     const result = detectSecrets(text, bearerConfig);
     expect(result.detected).toBe(true);
     expect(result.matches[0].type).toBe("BEARER_TOKEN");

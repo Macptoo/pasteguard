@@ -184,16 +184,16 @@ export function detectSecrets(
   }
 
   // JWT tokens: three base64url segments separated by dots
-  // Header starts with eyJ (base64 for {"...)
+  // Header starts with eyJ (base64 for {"...), minimum 20 chars per segment
   if (entitiesToDetect.has("JWT_TOKEN")) {
-    const jwtPattern = /eyJ[a-zA-Z0-9_-]*\.eyJ[a-zA-Z0-9_-]*\.[a-zA-Z0-9_-]+/g;
+    const jwtPattern = /eyJ[a-zA-Z0-9_-]{20,}\.eyJ[a-zA-Z0-9_-]{20,}\.[a-zA-Z0-9_-]{20,}/g;
     detectPattern(textToScan, jwtPattern, "JWT_TOKEN", matches, redactions);
   }
 
   // Bearer tokens in Authorization-style contexts
-  // Matches "Bearer " followed by a token (at least 20 chars)
+  // Matches "Bearer " followed by a token (at least 40 chars to reduce placeholder matches)
   if (entitiesToDetect.has("BEARER_TOKEN")) {
-    const bearerPattern = /Bearer\s+[a-zA-Z0-9._-]{20,}/gi;
+    const bearerPattern = /Bearer\s+[a-zA-Z0-9._-]{40,}/gi;
     detectPattern(textToScan, bearerPattern, "BEARER_TOKEN", matches, redactions);
   }
 
