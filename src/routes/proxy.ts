@@ -85,8 +85,8 @@ proxyRoutes.post(
         const secretTypesStr = secretTypes.join(", ");
 
         // Set headers before returning error
-        c.header("X-LLM-Shield-Secrets-Detected", "true");
-        c.header("X-LLM-Shield-Secrets-Types", secretTypesStr);
+        c.header("X-PasteGuard-Secrets-Detected", "true");
+        c.header("X-PasteGuard-Secrets-Types", secretTypesStr);
 
         // Block action (Phase 1) - return 422 error
         if (config.secrets_detection.action === "block") {
@@ -179,7 +179,7 @@ async function handleCompletion(
       }
     }
 
-    setShieldHeaders(c, decision, secretsDetected, secretsTypes);
+    setPasteGuardHeaders(c, decision, secretsDetected, secretsTypes);
 
     if (result.isStreaming) {
       return handleStreamingResponse(
@@ -212,27 +212,27 @@ async function handleCompletion(
 }
 
 /**
- * Set X-LLM-Shield response headers
+ * Set X-PasteGuard response headers
  */
-function setShieldHeaders(
+function setPasteGuardHeaders(
   c: Context,
   decision: RoutingDecision,
   secretsDetected?: boolean,
   secretsTypes?: string[],
 ) {
-  c.header("X-LLM-Shield-Mode", decision.mode);
-  c.header("X-LLM-Shield-Provider", decision.provider);
-  c.header("X-LLM-Shield-PII-Detected", decision.piiResult.hasPII.toString());
-  c.header("X-LLM-Shield-Language", decision.piiResult.language);
+  c.header("X-PasteGuard-Mode", decision.mode);
+  c.header("X-PasteGuard-Provider", decision.provider);
+  c.header("X-PasteGuard-PII-Detected", decision.piiResult.hasPII.toString());
+  c.header("X-PasteGuard-Language", decision.piiResult.language);
   if (decision.piiResult.languageFallback) {
-    c.header("X-LLM-Shield-Language-Fallback", "true");
+    c.header("X-PasteGuard-Language-Fallback", "true");
   }
   if (decision.mode === "mask") {
-    c.header("X-LLM-Shield-PII-Masked", decision.piiResult.hasPII.toString());
+    c.header("X-PasteGuard-PII-Masked", decision.piiResult.hasPII.toString());
   }
   if (secretsDetected && secretsTypes) {
-    c.header("X-LLM-Shield-Secrets-Detected", "true");
-    c.header("X-LLM-Shield-Secrets-Types", secretsTypes.join(","));
+    c.header("X-PasteGuard-Secrets-Detected", "true");
+    c.header("X-PasteGuard-Secrets-Types", secretsTypes.join(","));
   }
 }
 

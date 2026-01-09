@@ -84,8 +84,8 @@ NhAAAAAwEAAQAAAIEAyK8v5Q8v5Q8v5Q8v5Q8v5Q8v5Q8v5Q8v5Q8v5Q8v5Q8v5Q8v5Q8v
     expect(body.error.details.secrets_detected).toContain("OPENSSH_PRIVATE_KEY");
 
     // Check headers
-    expect(res.headers.get("X-LLM-Shield-Secrets-Detected")).toBe("true");
-    expect(res.headers.get("X-LLM-Shield-Secrets-Types")).toContain("OPENSSH_PRIVATE_KEY");
+    expect(res.headers.get("X-PasteGuard-Secrets-Detected")).toBe("true");
+    expect(res.headers.get("X-PasteGuard-Secrets-Types")).toContain("OPENSSH_PRIVATE_KEY");
   });
 
   test("blocks request with PEM private key", async () => {
@@ -114,7 +114,7 @@ MIIEpAIBAAKCAQEAyK8v5Q8v5Q8v5Q8v5Q8v5Q8v5Q8v5Q8v5Q8v5Q8v5Q8v5Q8v
       error: { details: { secrets_detected: string[] } };
     };
     expect(body.error.details.secrets_detected).toContain("PEM_PRIVATE_KEY");
-    expect(res.headers.get("X-LLM-Shield-Secrets-Detected")).toBe("true");
+    expect(res.headers.get("X-PasteGuard-Secrets-Detected")).toBe("true");
   });
 
   test("allows request without secrets", async () => {
@@ -135,7 +135,7 @@ MIIEpAIBAAKCAQEAyK8v5Q8v5Q8v5Q8v5Q8v5Q8v5Q8v5Q8v5Q8v5Q8v5Q8v5Q8v
     // Should not be blocked (may fail for other reasons like missing auth, but not 422)
     expect(res.status).not.toBe(422);
     // Should not have secrets detection headers
-    expect(res.headers.get("X-LLM-Shield-Secrets-Detected")).toBeNull();
+    expect(res.headers.get("X-PasteGuard-Secrets-Detected")).toBeNull();
   });
 
   test("does not set secrets headers when no secrets detected", async () => {
@@ -154,7 +154,7 @@ MIIEpAIBAAKCAQEAyK8v5Q8v5Q8v5Q8v5Q8v5Q8v5Q8v5Q8v5Q8v5Q8v5Q8v5Q8v
     });
 
     // Should not have secrets headers
-    expect(res.headers.get("X-LLM-Shield-Secrets-Detected")).toBeNull();
-    expect(res.headers.get("X-LLM-Shield-Secrets-Types")).toBeNull();
+    expect(res.headers.get("X-PasteGuard-Secrets-Detected")).toBeNull();
+    expect(res.headers.get("X-PasteGuard-Secrets-Types")).toBeNull();
   });
 });
