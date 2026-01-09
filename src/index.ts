@@ -93,6 +93,17 @@ validateStartup().then(() => {
 });
 
 async function validateStartup() {
+  // Validate secrets detection configuration
+  if (config.secrets_detection.action === "route_local" && config.mode === "mask") {
+    console.error("\n❌ Configuration error detected!\n");
+    console.error(
+      "   secrets_detection.action 'route_local' is not compatible with mode 'mask'.",
+    );
+    console.error("   Use mode 'route' or change secrets_detection.action to 'block' or 'redact'.\n");
+    console.error("[STARTUP] ✗ Invalid configuration. Exiting for safety.");
+    process.exit(1);
+  }
+
   const detector = getPIIDetector();
 
   // Wait for Presidio to be ready
@@ -172,6 +183,11 @@ PII Detection:
   Fallback:  ${config.pii_detection.fallback_language}
   Threshold: ${config.pii_detection.score_threshold}
   Entities:  ${config.pii_detection.entities.join(", ")}
+
+Secrets Detection:
+  Enabled:   ${config.secrets_detection.enabled ? "yes" : "no"}
+  Action:    ${config.secrets_detection.enabled ? config.secrets_detection.action : "n/a"}
+  Entities:  ${config.secrets_detection.enabled ? config.secrets_detection.entities.join(", ") : "n/a"}
 `);
 }
 
