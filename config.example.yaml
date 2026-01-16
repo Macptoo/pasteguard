@@ -21,16 +21,13 @@ providers:
     base_url: https://api.openai.com/v1
     # api_key: ${OPENAI_API_KEY}  # Optional fallback if client doesn't send auth header
 
-# Local provider - only for route mode
-# PII requests are sent here instead of the configured provider
+# Local provider - only used when mode: route
 # Supports: ollama (native), openai (for vLLM, LocalAI, LM Studio, etc.)
-#
-# Uncomment for route mode:
-# local:
-#   type: ollama  # or "openai" for OpenAI-compatible servers
-#   base_url: http://localhost:11434
-#   model: llama3.2
-#   # api_key: ${LOCAL_API_KEY}  # Only needed for OpenAI-compatible servers
+local:
+  type: ollama
+  base_url: http://localhost:11434
+  model: llama3.2
+  # api_key: ${LOCAL_API_KEY}  # Only needed for OpenAI-compatible servers
 
 # Masking settings (only for mask mode)
 masking:

@@ -600,16 +600,16 @@ function formatMessagesForLog(messages: ChatMessage[]): string {
 }
 
 /**
- * Wildcard proxy - forwards all other /v1/* requests to the configured provider
- * Supports: /models, /embeddings, /audio/*, /images/*, /files/*, etc.
- * Must be defined AFTER specific routes to avoid matching them first
+ * Wildcard proxy for /models, /embeddings, /audio/*, /images/*, etc.
  */
 proxyRoutes.all("/*", (c) => {
   const { openai } = getRouter().getProvidersInfo();
   const path = c.req.path.replace(/^\/openai\/v1/, "");
 
   return proxy(`${openai.baseUrl}${path}`, {
+    ...c.req,
     headers: {
+      "Content-Type": c.req.header("Content-Type"),
       Authorization: c.req.header("Authorization"),
     },
   });
