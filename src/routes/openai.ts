@@ -5,16 +5,16 @@ import { proxy } from "hono/proxy";
 import { z } from "zod";
 import { getConfig, type MaskingConfig } from "../config";
 import { unmaskResponse as unmaskPIIResponse } from "../pii/mask";
-import { detectSecretsInMessages, type MessageSecretsResult } from "../secrets/detect";
-import { maskMessages as maskSecretsMessages, unmaskSecretsResponse } from "../secrets/mask";
-import { getRouter, type MaskDecision, type RoutingDecision } from "../services/decision";
 import {
   type ChatCompletionRequest,
   type ChatCompletionResponse,
   type ChatMessage,
   LLMError,
   type LLMResult,
-} from "../services/llm-client";
+} from "../providers/openai-client";
+import { detectSecretsInMessages, type MessageSecretsResult } from "../secrets/detect";
+import { maskMessages as maskSecretsMessages, unmaskSecretsResponse } from "../secrets/mask";
+import { getRouter, type MaskDecision, type RoutingDecision } from "../services/decision";
 import { logRequest, type RequestLogData } from "../services/logger";
 import { createUnmaskingStream } from "../services/stream-transformer";
 import { extractTextContent } from "../utils/content";
@@ -36,7 +36,7 @@ const ChatCompletionSchema = z
   })
   .passthrough();
 
-export const proxyRoutes = new Hono();
+export const openaiRoutes = new Hono();
 
 /**
  * Type guard for MaskDecision
@@ -83,7 +83,7 @@ function createErrorLogData(
 /**
  * POST /v1/chat/completions - OpenAI-compatible chat completion endpoint
  */
-proxyRoutes.post(
+openaiRoutes.post(
   "/chat/completions",
   zValidator("json", ChatCompletionSchema, (result, c) => {
     if (!result.success) {
@@ -474,7 +474,7 @@ function formatMessagesForLog(messages: ChatMessage[]): string {
 /**
  * Wildcard proxy for /models, /embeddings, /audio/*, /images/*, etc.
  */
-proxyRoutes.all("/*", (c) => {
+openaiRoutes.all("/*", (c) => {
   const { openai } = getRouter().getProvidersInfo();
   const path = c.req.path.replace(/^\/openai\/v1/, "");
 
