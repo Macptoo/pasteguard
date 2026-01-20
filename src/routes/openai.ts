@@ -51,7 +51,7 @@ export const openaiRoutes = new Hono();
  * POST /v1/chat/completions
  */
 openaiRoutes.post(
-  "/chat/completions",
+  "/v1/chat/completions",
   zValidator("json", OpenAIRequestSchema, (result, c) => {
     if (!result.success) {
       return c.json(

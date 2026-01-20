@@ -7,9 +7,9 @@ description: Configure your LLM providers
 
 PasteGuard supports two provider types: configured providers (`providers`) and local provider (`local`).
 
-## Providers
+## OpenAI Provider
 
-Required for both modes. Any OpenAI-compatible endpoint works — cloud services (OpenAI, Azure, OpenRouter) or self-hosted (LiteLLM proxy, vLLM).
+Configure the OpenAI-compatible endpoint for `/openai/v1/*` requests.
 
 ```yaml
 providers:
@@ -23,7 +23,7 @@ providers:
 | `base_url` | API endpoint (any OpenAI-compatible URL) |
 | `api_key` | Optional. Used if client doesn't send Authorization header |
 
-### Supported Endpoints
+### Compatible APIs
 
 Any OpenAI-compatible API works:
 
@@ -59,6 +59,22 @@ providers:
   openai:
     base_url: https://api.groq.com/openai/v1
 ```
+
+## Anthropic Provider
+
+Configure the Anthropic endpoint for `/anthropic/v1/*` requests.
+
+```yaml
+providers:
+  anthropic:
+    base_url: https://api.anthropic.com
+    # api_key: ${ANTHROPIC_API_KEY}  # Optional fallback
+```
+
+| Option | Description |
+|--------|-------------|
+| `base_url` | Anthropic API endpoint |
+| `api_key` | Optional. Used if client doesn't send `x-api-key` header |
 
 ## Local Provider
 
@@ -117,11 +133,15 @@ local:
 
 ## API Key Handling
 
-PasteGuard forwards your client's `Authorization` header to the configured provider. You can optionally set `api_key` in config as a fallback:
+PasteGuard forwards your client's authentication headers to the configured provider. You can optionally set `api_key` in config as a fallback:
 
 ```yaml
 providers:
   openai:
     base_url: https://api.openai.com/v1
     api_key: ${OPENAI_API_KEY}  # Used if client doesn't send auth
+
+  anthropic:
+    base_url: https://api.anthropic.com
+    api_key: ${ANTHROPIC_API_KEY}  # Used if client doesn't send x-api-key
 ```
